@@ -11,11 +11,27 @@ public class PoolManager : MonoBehaviour {
 	 * SERIALIZEFIELD *
 	 ******************/
 	[SerializeField]
-	public int countBoids;
+	private int countBoids;
+	public int CountBoids {
+		get {
+			return countBoids;
+		}
+		set {
+			countBoids = value;
+		}
+	}
 
 	[SerializeField]
 	private GameObject boidsObject;
 	public GameObject BoidsObject
+	{
+		get { return boidsObject; }
+		set { boidsObject = value; }
+	}
+
+	[SerializeField]
+	private List<GameObject> obstacleList;
+	public List<GameObject> ObstacleList
 	{
 		get { return boidsObject; }
 		set { boidsObject = value; }
@@ -35,10 +51,13 @@ public class PoolManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Debug.Log("[BOIDS SCRIPT] Start");
+
+		//Pool of Boid
 		genePool = new List<GameObject>();
 		for (int i = 0; i < countBoids; ++i) {
 			Vector3 loc = new Vector3(i*3, 0, 0);
 			genePool.Add((GameObject)Instantiate(boidsObject, loc, boidsObject.transform.rotation));
+			genePool[i].rigidbody.velocity = new Vector3(Random.Range(0, 1), Random.Range(0, 1), Random.Range(0, 1)).normalized;
 		}
 	}
 	
