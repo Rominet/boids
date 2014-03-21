@@ -97,6 +97,8 @@ public class BoidsScript : MonoBehaviour
         // Init Alignment
         Vector3 alignmentVector = Vector3.zero;
 
+        if (_proximColliders == null)
+            return;
         foreach (var col in _proximColliders)
         {
             var proximPos = col.transform.position;
@@ -120,5 +122,7 @@ public class BoidsScript : MonoBehaviour
         alignmentVector = (alignmentVector - Rigidbd.velocity)/ AligmentFactor;
 
         Vector3 vectorVelocity = Rigidbd.velocity + cohesionVector + separationVector + alignmentVector;
+        _transform.rotation = Quaternion.LookRotation(vectorVelocity);
+        Rigidbd.velocity = transform.forward* (2 * vectorVelocity.magnitude);
     }
 }

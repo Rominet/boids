@@ -54,20 +54,18 @@ public class PoolManager : MonoBehaviour {
 	/***********
 	 * PRIVATE *
 	 ***********/
-	private static List<GameObject> genePool;
 	
 
 	// Use this for initialization
 	void Start () {
 		Debug.Log("[BOIDS SCRIPT] Start");
-
+	    GameObject tmp;
 		//Pool of Boid
-		genePool = new List<GameObject>();
 		for (int i = 0; i < _countBoids; ++i) {
 			Vector3 loc = new Vector3(i*3, 0, 0);
-			genePool.Add((GameObject)Instantiate(BoidsObject, loc, BoidsObject.transform.rotation));
-			genePool[i].rigidbody.velocity = new Vector3(Random.Range(0, 100), Random.Range(0, 100), Random.Range(0, 100)).normalized * InitVelocityFactor;
-            Debug.Log(genePool[i].rigidbody.velocity);
+			tmp = (GameObject)Instantiate(BoidsObject, loc, BoidsObject.transform.rotation);
+            tmp.transform.eulerAngles = new Vector3(0.0f, Random.Range(0, 360), Random.Range(0, 360));
+		    tmp.rigidbody.velocity = transform.forward*InitVelocityFactor;
 		}
 	}
 	

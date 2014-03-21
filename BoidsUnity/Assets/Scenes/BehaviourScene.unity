@@ -74,6 +74,76 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &38055168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 38055172}
+  - 33: {fileID: 38055171}
+  - 64: {fileID: 38055170}
+  - 23: {fileID: 38055169}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &38055169
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38055168}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+--- !u!64 &38055170
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38055168}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &38055171
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38055168}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &38055172
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38055168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 100, y: 1, z: 100}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &799049198
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,11 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72f6143a61a20147b69829777d9309f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeBetweenMoves: 200
-  _timeBetweenOverlapShere: 1000
+  _timeBetweenMoves: .0500000007
+  _timeBetweenOverlapShere: 3
   _visibilityRadius: 10
-  _cohesionFactor: 100
-  _distanceMin: 10
+  _cohesionFactor: .100000001
+  _distanceMin: 0
   _aligmentFactor: 8
   Rigidbd: {fileID: 799049201}
   Collid: {fileID: 1506873476}
@@ -134,10 +204,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 16
   m_CollisionDetection: 0
 --- !u!1 &890390010
 GameObject:
@@ -231,8 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e5ed646cfb63242ae27fc191265f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countBoids: 20
-  _initVelocityFactor: 2
+  _countBoids: 70
+  _initVelocityFactor: 20
   _boidsObject: {fileID: 799049198}
   _obstacleList: []
 --- !u!1001 &1077333170
@@ -273,6 +343,34 @@ Prefab:
     - target: {fileID: 100000, guid: 36d8c3f075dedf14f87c0043481895b1, type: 2}
       propertyPath: m_Name
       value: Boid
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 36d8c3f075dedf14f87c0043481895b1, type: 2}
+      propertyPath: _visibilityRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: 36d8c3f075dedf14f87c0043481895b1, type: 2}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: 36d8c3f075dedf14f87c0043481895b1, type: 2}
+      propertyPath: m_Constraints
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 36d8c3f075dedf14f87c0043481895b1, type: 2}
+      propertyPath: _timeBetweenMoves
+      value: .0500000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 36d8c3f075dedf14f87c0043481895b1, type: 2}
+      propertyPath: _timeBetweenOverlapShere
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 36d8c3f075dedf14f87c0043481895b1, type: 2}
+      propertyPath: _cohesionFactor
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 36d8c3f075dedf14f87c0043481895b1, type: 2}
+      propertyPath: _distanceMin
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36d8c3f075dedf14f87c0043481895b1, type: 2}
